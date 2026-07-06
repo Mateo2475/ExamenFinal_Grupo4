@@ -3,7 +3,7 @@ Algoritmo FuerzaBruta_TSP
     Definir distancias, rutaActual, mejorRuta Como Entero
     Definir visitado Como Logico
 	
-    Escribir "Ingrese el numero de ciudades:"
+    Escribir "ingrese el numero de ciudades:"
     Leer n
 	
     Dimension distancias[n,n]
@@ -14,7 +14,7 @@ Algoritmo FuerzaBruta_TSP
     Para i=1 Hasta n Con Paso 1
         Para j=1 Hasta n Con Paso 1
             Si i <> j Entonces
-                Escribir "Distancia de ciudad ", i, " a ciudad ", j, ":"
+                Escribir "distancia de ciudad ", i, " a ciudad ", j, ":"
                 Leer distancias[i,j]
             SiNo
                 distancias[i,j] <- 0
@@ -29,11 +29,11 @@ Algoritmo FuerzaBruta_TSP
 	
     Permutar(1, 0, n, distancias, visitado, rutaActual, mejorRuta, costoMinimo)
 	
-    Escribir "La ruta optima es:"
+    Escribir "la ruta optima es:"
     Para i=1 Hasta n Con Paso 1
         Escribir mejorRuta[i]
     FinPara
-    Escribir "El costo minimo es: ", costoMinimo
+    Escribir "el costo minimo es: ", costoMinimo
 FinAlgoritmo
 
 
