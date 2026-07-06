@@ -1,50 +1,46 @@
-def tspRecursivo (mascara, posicionActual, n, distancias, memo):
-    limiteTodasVis = (1 << n) - 1  
+def tsp_recursivo (mascara, posicion_actual, n, distancias, memo):
+    limite_todas_vis = (1 << n) - 1 
     
-    if mascara == limiteTodasVis:
-        distanciaRegreso = distancias[posicionActual][0] 
-        if distanciaRegreso == 0 and posicionActual != 0:
+    if mascara == limite_todas_vis:
+        distancia_regreso = distancias[posicion_actual][0] 
+        if distancia_regreso == 0 and posicion_actual != 0:
             return 999999
-        return distanciaRegreso
+        return distancia_regreso
 
-   
-    if memo[mascara][posicionActual] != -1:
-        return memo[mascara][posicionActual]
-    costoFinal = 999999
+
+    if memo[mascara][posicion_actual] != -1:
+        return memo[mascara][posicion_actual]
+    costo_final = 999999
     for i in range(n):
-        
+
         if (mascara & (1 << i)) == 0:
             
-            
-            subCosto = distancias[posicionActual][i] + tspRecursivo(
+            sub_costo = distancias[posicion_actual][i] + tsp_recursivo(
                 mascara | (1 << i), i, n, distancias, memo
             )
 
-            if subCosto < costoFinal:
-                costoFinal = subCosto
+            if sub_costo < costo_final:
+                costo_final = sub_costo
 
-    
-    memo[mascara][posicionActual] = costoFinal
-    return costoFinal
+    memo[mascara][posicion_actual] = costo_final
+    return costo_final
 
 def main():
-    n = int(input("ingrese el numero de ciudades: "))
+    n = int(input("Ingrese el numero de ciudades: "))
     
-    limiteMascaras = 1 << n  # Equivale a 2^n
-    
-   
+    limite_mascaras = 1 << n  
+
     distancias = [[0] * n for _ in range(n)]
     for i in range(n):
         for j in range(n):
             if i != j:
-                distancias[i][j] = int(input(f"distancia de ciudad {i+1} a ciudad {j+1}: "))
-    
-   
-    memo = [[-1] * n for _ in range(limiteMascaras)]
+                distancias[i][j] = int(input(f"Distancia de ciudad {i+1} a ciudad {j+1}: "))
     
 
-    costoMinimo = tspRecursivo(1, 0, n, distancias, memo)
+    memo = [[-1] * n for _ in range(limite_mascaras)]
+
+    costo_minimo = tsp_recursivo(1, 0, n, distancias, memo)
     
-    print(f"\nel costo minimo del tour es: {costoMinimo}")
-if _name_ == "_main_":
+    print(f"\nEl costo minimo del tour es: {costo_minimo}")
+if __name__ == "__main__":
     main()
